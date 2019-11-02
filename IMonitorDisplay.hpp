@@ -3,6 +3,8 @@
 # define IMONITORDISPLAY_H
 
 # include <iostream>
+# include "OSInfoModule.hpp"
+# include "HostNameModule.hpp"
 
 class IMonitorDisplay {
 
@@ -15,6 +17,10 @@ public:
     IMonitorDisplay();
 	virtual ~IMonitorDisplay() {}
     
+    //visitor pattern 
+    virtual void render(class OSInfoModule *) = 0;
+    virtual void render(class HostNameModule *) = 0;
+
 };
 
 #endif

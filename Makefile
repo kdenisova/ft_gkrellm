@@ -8,7 +8,7 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 CXX_FLAGS = -Wall -Wextra -Werror -g
 LINK_FLAGS = -lncurses
 
-SRC = main.cpp Window.cpp IMonitorModule.cpp HostNameModule.cpp OSInfoModule.cpp
+SRC = main.cpp NCursesRenderer.cpp IMonitorModule.cpp IMonitorDisplay.cpp HostNameModule.cpp OSInfoModule.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

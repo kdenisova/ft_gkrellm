@@ -36,6 +36,18 @@ OSInfoModule & OSInfoModule::operator=(OSInfoModule const & rfs) {
 	return (*this);
 }
 
+void OSInfoModule::render(IMonitorDisplay *d) {
+   d->render(this);
+}
+
+void OSInfoModule::refresh() {
+    if (this->_type == "Darwin") {
+        this->_type = "OS X";
+    } else {
+        this->_type = "Darwin";
+    }
+}
+
 std::string OSInfoModule::getName() const {
     return (this->_module);
 }

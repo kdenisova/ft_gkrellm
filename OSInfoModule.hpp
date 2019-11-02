@@ -5,6 +5,7 @@
 
 # include <iostream>
 # include "IMonitorModule.hpp"
+# include "IMonitorDisplay.hpp"
 
 class OSInfoModule : public IMonitorModule {
 
@@ -24,6 +25,8 @@ public:
 	std::string getType() const;
     std::string getRelease() const;
 
+	void 		render(class IMonitorDisplay *);
+	void 		refresh();
     int			getSize(std::string const name) const;
 
 };

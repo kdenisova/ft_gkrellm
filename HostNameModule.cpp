@@ -26,6 +26,13 @@ HostNameModule & HostNameModule::operator=(HostNameModule const & rfs) {
 	return (*this);
 }
 
+void HostNameModule::render(IMonitorDisplay *d) {
+   d->render(this);
+}
+
+void HostNameModule::refresh() {
+}
+
 std::string HostNameModule::getName() const {
     return (this->_module);
 }

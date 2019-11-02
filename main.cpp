@@ -11,10 +11,28 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Window.hpp"
+#include "NCursesRenderer.hpp"
 
 int main() {
-	Window win;
+	NCursesRenderer win;
+
+	OSInfoModule os;
+	HostNameModule ho;
+
+	int key;
+	for (;;) {
+		key = getch();
+		if (key == 27)
+			break ;
+
+		os.refresh();
+		os.render(&win);
+
+		ho.refresh();
+		ho.render(&win);
+
+		usleep(1000000);
+	}
 
 	return (0);
 }

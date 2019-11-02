@@ -3,6 +3,7 @@
 # define IMONITORMODULE_H
 
 # include <iostream>
+//# include "IMonitorDisplay.hpp"
 
 class IMonitorModule {
 
@@ -17,6 +18,11 @@ public:
     
     virtual std::string getName() const = 0;
     
+    virtual void refresh() = 0;
+
+    //visitor pattern
+    virtual void render(class IMonitorDisplay *) = 0;
+
 };
 
 #endif
