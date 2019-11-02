@@ -25,7 +25,8 @@ class NCursesRenderer : public IMonitorDisplay {
 
 private:
     WINDOW  *_win;
-    int     _n; //amount of modules
+    int     _x;
+    int     _y;
 
 public:
 
@@ -34,10 +35,13 @@ public:
     NCursesRenderer(NCursesRenderer const & src);
 	NCursesRenderer & operator=(NCursesRenderer const & rfs);
 
-    void render(OSInfoModule *);
     void render(HostNameModule *);
+    void render(OSInfoModule *);
+    void render(class DateTimeModule *);
+    void render(class CPUModule *);
+    void render(class RAMModule *);
+    void render(class NetworkModule *);
 
-    void    update();
 };
 
 #endif

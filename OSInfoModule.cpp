@@ -14,7 +14,7 @@ OSInfoModule::OSInfoModule() {
 
     char type[100];
     char release[100];
-    size_t size;
+    size_t size = 100;
 
     sysctlbyname("kern.ostype", &type, &size, NULL, 0);
     this->_type += type;
@@ -41,11 +41,11 @@ void OSInfoModule::render(IMonitorDisplay *d) {
 }
 
 void OSInfoModule::refresh() {
-    if (this->_type == "Darwin") {
-        this->_type = "OS X";
-    } else {
-        this->_type = "Darwin";
-    }
+    // if (this->_type == "Darwin") {
+    //     this->_type = "OS X";
+    // } else {
+    //     this->_type = "Darwin";
+    // }
 }
 
 std::string OSInfoModule::getName() const {
