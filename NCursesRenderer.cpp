@@ -55,22 +55,35 @@ void NCursesRenderer::render(CPUModule *m) {
 	mvwprintw(this->_win, 33, this->_y / 2 - m->getSize(m->getName()) / 2, const_cast<char*>(m->getName().c_str()));
 	mvwprintw(this->_win, 34, 0, "");
 	mvwprintw(this->_win, 35, this->_y / 2 - m->getSize(m->getInfo()) / 2, const_cast<char*>(m->getInfo().c_str()));
-	mvwprintw(this->_win, 42, 1, "__________________________________________");
+	mvwprintw(this->_win, 36, this->_y / 2 - m->getSize(m->getData()) / 2, const_cast<char*>(m->getData().c_str()));
+	
+	std::list<float> chart = m->getLastUsage(this->_y - 2);
+	int pos;
+	int i = 1;
+	for (std::list<float>::iterator it = chart.begin(); it != chart.end(); it++) {
+		pos = (*it * 10) / 100;
+		for (int j = 0; j < pos; j++) {
+			mvwprintw(this->_win, 46 - j, i, "|");
+		}
+		i++;
+	}
+	
+	mvwprintw(this->_win, 47, 1, "__________________________________________");
 	wrefresh(this->_win);
 }
 
 void NCursesRenderer::render(RAMModule *m) {
-	mvwprintw(this->_win, 43, this->_y / 2 - m->getSize(m->getName()) / 2, const_cast<char*>(m->getName().c_str()));
-	mvwprintw(this->_win, 44, 0, "");
-	mvwprintw(this->_win, 45, this->_y / 2 - m->getSize(m->getInfo()) / 2, const_cast<char*>(m->getInfo().c_str()));
-	mvwprintw(this->_win, 52, 1, "__________________________________________");
+	mvwprintw(this->_win, 48, this->_y / 2 - m->getSize(m->getName()) / 2, const_cast<char*>(m->getName().c_str()));
+	mvwprintw(this->_win, 49, 0, "");
+	mvwprintw(this->_win, 50, this->_y / 2 - m->getSize(m->getInfo()) / 2, const_cast<char*>(m->getInfo().c_str()));
+	mvwprintw(this->_win, 57, 1, "__________________________________________");
 	wrefresh(this->_win);
 }
 
 void NCursesRenderer::render(NetworkModule *m) {
-	mvwprintw(this->_win, 53, this->_y / 2 - m->getSize(m->getName()) / 2, const_cast<char*>(m->getName().c_str()));
-	mvwprintw(this->_win, 54, 0, "");
-	mvwprintw(this->_win, 55, this->_y / 2 - m->getSize(m->getInfo()) / 2, const_cast<char*>(m->getInfo().c_str()));
+	mvwprintw(this->_win, 58, this->_y / 2 - m->getSize(m->getName()) / 2, const_cast<char*>(m->getName().c_str()));
+	mvwprintw(this->_win, 59, 0, "");
+	mvwprintw(this->_win, 66, this->_y / 2 - m->getSize(m->getInfo()) / 2, const_cast<char*>(m->getInfo().c_str()));
 	wrefresh(this->_win);
 }
 
