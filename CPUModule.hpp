@@ -15,8 +15,8 @@ private:
 
 	std::string _module;
 	std::string _info;
-	std::vector<float> _usage;
-	std::string	_data;
+	std::string	_usage;
+	std::vector<float> _stat;
 
 public:
 	CPUModule();
@@ -28,7 +28,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	std::string getInfo() const;
-	std::string getData() const;
+	std::string getUsage() const;
 	std::list<float> getLastUsage(unsigned long n);
 	int			getSize(std::string const name) const;
 

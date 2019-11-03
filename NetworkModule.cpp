@@ -1,5 +1,5 @@
 
-
+#include <fstream>
 #include <unistd.h>
 #include <string>
 #include <sys/sysctl.h>
@@ -8,7 +8,6 @@
 NetworkModule::NetworkModule() {
 	this->_module = "NETWORK";
 
-    this->_info = "";
 	refresh();
 }
 
@@ -30,6 +29,12 @@ void NetworkModule::render(IMonitorDisplay *d) {
 }
 
 void NetworkModule::refresh() {
+	system("top -l 1 | grep \"Network\" | awk '{print $2\" \"$3\" \"$4\" \"$5\" \"$6}' > netlog");
+
+    std::ifstream ifs("netlog");
+    std::string buff;
+    std::getline(ifs, buff);
+    this->_info = buff;
 }
 
 std::string NetworkModule::getName() const {

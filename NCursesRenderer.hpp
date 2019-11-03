@@ -27,6 +27,7 @@ private:
     WINDOW  *_win;
     int     _x;
     int     _y;
+    //int     _pos;
 
 public:
 
@@ -41,6 +42,7 @@ public:
     void render(class CPUModule *);
     void render(class RAMModule *);
     void render(class NetworkModule *);
+    void render(class DisksModule *);
 
 };
 

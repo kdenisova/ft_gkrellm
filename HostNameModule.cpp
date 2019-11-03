@@ -1,4 +1,4 @@
-
+#include <fstream>
 #include <unistd.h>
 #include <string>
 #include "HostNameModule.hpp"
@@ -9,8 +9,15 @@ HostNameModule::HostNameModule() {
     char buff[50];
 
     gethostname(buff, sizeof(buff) - 1);
-    this->_host = buff;
-    //if ((gethostname(buff, sizeof(buff) - 1) != 0)
+    this->_host = "Hostname: ";
+    this->_host += buff;
+
+    system("whoami > userlog");
+
+    std::ifstream ifs("userlog");
+    std::string user;
+    std::getline(ifs, user);
+    this->_user = "Username: " + user;
 }
 
 HostNameModule::~HostNameModule() {
@@ -23,6 +30,7 @@ HostNameModule::HostNameModule(HostNameModule const & src) {
 HostNameModule & HostNameModule::operator=(HostNameModule const & rfs) {
 	this->_module = rfs._module;
     this->_host = rfs._host;
+    this->_user = rfs._user;
 	return (*this);
 }
 
@@ -39,6 +47,10 @@ std::string HostNameModule::getName() const {
 
 std::string HostNameModule::getHostName() const {
     return (this->_host);
+}
+
+std::string HostNameModule::getUserName() const {
+    return (this->_user);
 }
 
 int	    HostNameModule::getSize(std::string const name) const {

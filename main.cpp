@@ -13,56 +13,35 @@
 #include <iostream>
 #include "NCursesRenderer.hpp"
 
-int main(int argc, char *argv[]) {
+std::vector<IMonitorModule*> getSelectedModules() {
+	std::vector<IMonitorModule*> m;
+	m.push_back(new OSInfoModule());
+	m.push_back(new HostNameModule());
+	m.push_back(new DateTimeModule());
+	m.push_back(new CPUModule());
+	m.push_back(new RAMModule());
+	m.push_back(new NetworkModule());
+	m.push_back(new DisksModule());
 
-	std::string inp;
+	return (m);
+}
 
-	if (argc > 1)
-		inp = argv[1];
+int main() {
+	NCursesRenderer win;
+
+	std::vector<IMonitorModule*> modules = getSelectedModules();
 	
-	if(inp.compare("-g") == 0) {}
+	int key;
+	for (;;) {
+		key = getch();
+		if (key == 27)
+			break ;
 
-	else if (inp.compare("-g2") == 0) {}
-
-	else if (inp.compare("-mod1") == 0) {}
-
-	else if (inp.compare("-mod2") == 0) {}
-
-	else {
-		NCursesRenderer win;
-
-		OSInfoModule os;
-		HostNameModule ho;
-		DateTimeModule da;
-		CPUModule cp;
-		RAMModule ra;
-		NetworkModule ne;
-
-		int key;
-		for (;;) {
-			key = getch();
-			if (key == 27)
-				break ;
-			
-			ho.refresh();
-			ho.render(&win);
-			
-			os.refresh();
-			os.render(&win);
-
-			da.refresh();
-			da.render(&win);
-
-			cp.refresh();
-			cp.render(&win);
-
-			ra.refresh();
-			ra.render(&win);
-
-			ne.refresh();
-			ne.render(&win);
-			usleep(1000000);
+		for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
+			(*it)->refresh();
+			(*it)->render(&win);
 		}
+		usleep(1000000);
 	}
 
 	return (0);

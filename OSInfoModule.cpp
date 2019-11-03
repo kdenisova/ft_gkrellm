@@ -41,11 +41,6 @@ void OSInfoModule::render(IMonitorDisplay *d) {
 }
 
 void OSInfoModule::refresh() {
-    // if (this->_type == "Darwin") {
-    //     this->_type = "OS X";
-    // } else {
-    //     this->_type = "Darwin";
-    // }
 }
 
 std::string OSInfoModule::getName() const {

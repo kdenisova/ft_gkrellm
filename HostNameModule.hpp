@@ -12,6 +12,8 @@ private:
 
 	std::string _module;
 	std::string	_host;
+	std::string	_user;
+	
 
 public:
     HostNameModule();
@@ -23,6 +25,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	std::string getHostName() const;
+	std::string getUserName() const;
     int			getSize(std::string const name) const;
 
 };

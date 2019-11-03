@@ -1,5 +1,5 @@
 
-
+#include <fstream>
 #include <unistd.h>
 #include <string>
 #include <sys/sysctl.h>
@@ -8,7 +8,6 @@
 RAMModule::RAMModule() {
 	this->_module = "RAM";
 
-    this->_info = "";
 	refresh();
 }
 
@@ -30,6 +29,12 @@ void RAMModule::render(IMonitorDisplay *d) {
 }
 
 void RAMModule::refresh() {
+	system("top -l 1 | grep \"PhysMem\" | awk '{print $2\" \"$3\" \"$4\" \"$5\" \"$6\" \"$7}' > ramlog");
+
+    std::ifstream ifs("ramlog");
+    std::string buff;
+    std::getline(ifs, buff);
+    this->_info = buff;
 }
 
 std::string RAMModule::getName() const {

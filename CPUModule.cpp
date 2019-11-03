@@ -1,5 +1,4 @@
 
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <fstream>
@@ -29,6 +28,8 @@ CPUModule::CPUModule(CPUModule const & src) {
 CPUModule & CPUModule::operator=(CPUModule const & rfs) {
 	this->_module = rfs._module;
     this->_info = rfs._info;
+    this->_usage = rfs._usage;
+    this->_stat = rfs._stat;
 	return (*this);
 }
 
@@ -37,13 +38,13 @@ void CPUModule::render(IMonitorDisplay *d) {
 }
 
 void CPUModule::refresh() {
-    //clear();
+   
     system("top -l 1 | grep \"^CPU usage:\" | awk '{print $3}' > cpulog");
 
     std::ifstream ifs("cpulog");
     std::string buff;
     std::getline(ifs, buff);
-    this->_data = "Usage: " + buff + "%";
+    this->_usage = "Usage: " + buff + "%";
     buff.erase(buff.length() - 1, buff.length());
     float usage;
     try {
@@ -52,7 +53,7 @@ void CPUModule::refresh() {
 	catch(std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-    this->_usage.push_back(usage);
+    this->_stat.push_back(usage);
 }
 
 std::string CPUModule::getName() const {
@@ -63,22 +64,21 @@ std::string CPUModule::getInfo() const {
 	return (this->_info);
 }
 
-std::string CPUModule::getData() const {
-	return (this->_data);
+std::string CPUModule::getUsage() const {
+	return (this->_usage);
 }
 
 std::list<float> CPUModule::getLastUsage(unsigned long n) {
     std::list<float> chart;
 
-    //std::cout << this->_usage.size() << std::endl;
-    if (this->_usage.size() <= n) {
-        for (std::vector<float>::iterator it = this->_usage.begin(); it != this->_usage.end(); it++) {
+    if (this->_stat.size() <= n) {
+        for (std::vector<float>::iterator it = this->_stat.begin(); it != this->_stat.end(); it++) {
              chart.push_back(*it);
         }
         return (chart);
     }
-    for (unsigned long i = this->_usage.size() - n; i < this->_usage.size(); i++) {
-         chart.push_back(this->_usage.at(i));
+    for (unsigned long i = this->_stat.size() - n; i < this->_stat.size(); i++) {
+         chart.push_back(this->_stat.at(i));
     }
     return (chart);
 }

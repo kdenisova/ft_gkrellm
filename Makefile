@@ -9,7 +9,7 @@ CXX_FLAGS = -Wall -Wextra -Werror -g
 LINK_FLAGS = -lncurses
 
 SRC = main.cpp NCursesRenderer.cpp IMonitorModule.cpp IMonitorDisplay.cpp HostNameModule.cpp OSInfoModule.cpp \
-DateTimeModule.cpp CPUModule.cpp RAMModule.cpp NetworkModule.cpp
+DateTimeModule.cpp CPUModule.cpp RAMModule.cpp NetworkModule.cpp DisksModule.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

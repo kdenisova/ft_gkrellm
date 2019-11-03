@@ -9,6 +9,7 @@
 # include "CPUModule.hpp"
 # include "RAMModule.hpp"
 # include "NetworkModule.hpp"
+# include "DisksModule.hpp"
 
 class IMonitorDisplay {
 
@@ -28,6 +29,7 @@ public:
     virtual void render(class CPUModule *) = 0;
     virtual void render(class RAMModule *) = 0;
     virtual void render(class NetworkModule *) = 0;
+    virtual void render(class DisksModule *) = 0;
 
 };
 
