@@ -235,6 +235,7 @@ bool GUIRender::isOpen() {
 void GUIRender::tick() {
     //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.display();
+    this->_window.clear(sf::Color(150, 150, 150));
 
     sf::Event event;
     while (this->_window.pollEvent(event))
