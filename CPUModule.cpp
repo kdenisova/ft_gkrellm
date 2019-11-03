@@ -44,9 +44,9 @@ void CPUModule::refresh() {
     std::ifstream ifs("cpulog");
     std::string buff;
     std::getline(ifs, buff);
-    this->_usage = "Usage: " + buff + "%";
+    
     buff.erase(buff.length() - 1, buff.length());
-
+    this->_usage = "Usage: " + buff + "%";
     float usage;
     try {
 		usage = static_cast<float>(std::stof(buff));
