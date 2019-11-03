@@ -109,61 +109,78 @@ void GUIRender::render(OSInfoModule *m) {
     this->_window.draw(text4);
     this->_window.display();
 
-    // sf::Text text;
-    // text.setFont(this->_font);
-    // text.setString(m->getName());
-    // text.setCharacterSize(24);
-    // text.setFillColor(sf::Color::Black);
-    // text.setStyle(sf::Text::Bold);
-    // text.setPosition(40.f, 50.f);
-
-    // sf::Text text2;
-    // text2.setFont(this->_font);
-    // text2.setString(m->getType());
-    // text2.setCharacterSize(24);
-    // text2.setFillColor(sf::Color::Black);
-    // text2.setStyle(sf::Text::Bold);
-    // text2.setPosition(60.f, 50.f);
-
-    // this->_window.clear(sf::Color(150, 150, 150));
-    // this->_window.draw(text);
-    // this->_window.draw(text2);
-    // this->_window.display();
-
-	// mvwprintw(this->_win, 9, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
-	// mvwprintw(this->_win, 11, this->_y / 2 - m->getSize(m->getType()) / 2, m->getType().c_str());
-	// mvwprintw(this->_win, 13, this->_y / 2 - m->getSize(m->getRelease()) / 2, m->getRelease().c_str());
-	// mvwprintw(this->_win, 14, 1, "__________________________________________");
-	// wrefresh(this->_win);
 }
 
 void GUIRender::render(DateTimeModule *m) {
-     m->getName();
-	// mvwprintw(this->_win, 15, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
-	// mvwprintw(this->_win, 17, this->_y / 2 - m->getSize(m->getDate()) / 2, m->getDate().c_str());
-	// mvwprintw(this->_win, 18, 1, "__________________________________________");
-	// wrefresh(this->_win);
+    sf::Text text;
+    text.setFont(this->_font);
+    text.setString(m->getName());
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::Black);
+    text.setStyle(sf::Text::Bold);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 340);
+
+    sf::Text text2;
+    text2.setFont(this->_font);
+    text2.setString(m->getDate());
+    text2.setCharacterSize(28);
+    text2.setFillColor(sf::Color::Black);
+    text2.setStyle(sf::Text::Bold);
+    text2.setPosition(10, 390);
+
+    sf::Text text3;
+    text3.setFont(this->_font);
+    text3.setString("______________________________________");
+    text3.setCharacterSize(28);
+    text3.setFillColor(sf::Color::Black);
+    text3.setStyle(sf::Text::Bold);
+    text3.setPosition(0, 420);
+
+    this->_window.clear(sf::Color(150, 150, 150));
+    this->_window.draw(text);
+    this->_window.draw(text2);
+    this->_window.draw(text3);
+    this->_window.display();
 }
 
 void GUIRender::render(CPUModule *m) {
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
-    text.setCharacterSize(24);
+    text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 460);
 
     sf::Text text2;
     text2.setFont(this->_font);
-    text2.setString(m->getUsage());
-    text2.setCharacterSize(24);
+    text2.setString(m->getInfo());
+    text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(40.f, 50.f);
+    text2.setPosition(10, 510);
 
-    //this->_window.clear(sf::Color(150, 150, 150));
+    sf::Text text3;
+    text3.setFont(this->_font);
+    text3.setString(m->getUsage());
+    text3.setCharacterSize(28);
+    text3.setFillColor(sf::Color::Black);
+    text3.setStyle(sf::Text::Bold);
+    text3.setPosition(10, 560);
+
+    sf::Text text4;
+    text4.setFont(this->_font);
+    text4.setString("______________________________________");
+    text4.setCharacterSize(28);
+    text4.setFillColor(sf::Color::Black);
+    text4.setStyle(sf::Text::Bold);
+    text4.setPosition(0, 590);
+
+    this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
+    this->_window.draw(text3);
+    this->_window.draw(text4);
     this->_window.display();
 
 	// mvwprintw(this->_win, 19, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
