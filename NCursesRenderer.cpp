@@ -108,7 +108,9 @@ bool NCursesRenderer::isOpen() {
 	return true;
 }
 
-void NCursesRenderer::tick() { }
+void NCursesRenderer::tick() {
+	usleep(1000000);
+ }
 
 NCursesRenderer::~NCursesRenderer() {
 	endwin();

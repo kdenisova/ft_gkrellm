@@ -46,6 +46,7 @@ void CPUModule::refresh() {
     std::getline(ifs, buff);
     this->_usage = "Usage: " + buff + "%";
     buff.erase(buff.length() - 1, buff.length());
+
     float usage;
     try {
 		usage = static_cast<float>(std::stof(buff));
@@ -53,6 +54,7 @@ void CPUModule::refresh() {
 	catch(std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
+
     this->_stat.push_back(usage);
     ifs.close();
 }

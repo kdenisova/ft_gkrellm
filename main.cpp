@@ -14,6 +14,7 @@
 #include <fstream>
 #include "NCursesRenderer.hpp"
 #include "GUIRender.hpp"
+#include "TopListener.hpp"
 
 std::vector<IMonitorModule*> getSelectedModules(int *size) {
 	std::ifstream ifs("config");
@@ -82,13 +83,36 @@ int main(int argc, char **argv) {
 
 	if (mode.compare("-t") == 0 || mode.compare("-g") == 0) {
 		int size = 3;
-
 		std::vector<IMonitorModule*> modules = getSelectedModules(&size);
+
 		if (mode.compare("-t") == 0) {
 			display = new NCursesRenderer(size);
 		} else if (mode.compare("-g") == 0) {
 			display = new GUIRender();
-		} 
+		} else {
+			std::cout << "unknown renderer type" << std::endl;
+			return(1);
+		}
+
+		//TopListener listener;
+		//listener.start();
+
+		while (display->isOpen()) {
+			display->tick();
+			
+			int key;
+			key = getch();
+			if (key == 27)
+				break ;
+			for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
+				(*it)->refresh();
+				(*it)->render(display);
+			}
+		}
+
+		//listener.stop();
+
+		/*
 		int key;
 		for (;;) {
 			key = getch();
@@ -102,6 +126,8 @@ int main(int argc, char **argv) {
 
 			usleep(1000000);
 		}
+		*/
+
 		delete display;
 	}
 	else {

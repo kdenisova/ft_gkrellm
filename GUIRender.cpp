@@ -68,8 +68,17 @@ void GUIRender::render(HostNameModule *m) {
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
 
+    sf::Text text2;
+    text2.setFont(this->_font);
+    text2.setString(m->getHostName());
+    text2.setCharacterSize(24);
+    text2.setFillColor(sf::Color::Black);
+    text2.setStyle(sf::Text::Bold);
+    text2.setPosition(20.f, 50.f);
+
     this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
+    this->_window.draw(text2);
     this->_window.display();
 
 	// mvwprintw(this->_win, 3, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
@@ -81,6 +90,7 @@ void GUIRender::render(HostNameModule *m) {
 
 void GUIRender::render(OSInfoModule *m) {
      m->getName();
+
 	// mvwprintw(this->_win, 9, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	// mvwprintw(this->_win, 11, this->_y / 2 - m->getSize(m->getType()) / 2, m->getType().c_str());
 	// mvwprintw(this->_win, 13, this->_y / 2 - m->getSize(m->getRelease()) / 2, m->getRelease().c_str());
@@ -97,7 +107,26 @@ void GUIRender::render(DateTimeModule *m) {
 }
 
 void GUIRender::render(CPUModule *m) {
-     m->getName();
+    sf::Text text;
+    text.setFont(this->_font);
+    text.setString(m->getName());
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::Black);
+    text.setStyle(sf::Text::Bold);
+
+    sf::Text text2;
+    text2.setFont(this->_font);
+    text2.setString(m->getUsage());
+    text2.setCharacterSize(24);
+    text2.setFillColor(sf::Color::Black);
+    text2.setStyle(sf::Text::Bold);
+    text2.setPosition(40.f, 50.f);
+
+    this->_window.clear(sf::Color(150, 150, 150));
+    this->_window.draw(text);
+    this->_window.draw(text2);
+    this->_window.display();
+
 	// mvwprintw(this->_win, 19, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	// mvwprintw(this->_win, 21, this->_y / 2 - m->getSize(m->getInfo()) / 2, m->getInfo().c_str());
 	// mvwprintw(this->_win, 23, 15, "                            ");
@@ -157,9 +186,6 @@ void GUIRender::tick() {
             this->_window.close();
         }
     }
-
-    _window.clear(sf::Color(150, 150, 150));
-    this->_window.display();
 }
 
 GUIRender::~GUIRender() {
