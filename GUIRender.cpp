@@ -25,7 +25,7 @@ GUIRender::GUIRender() {
     text.setCharacterSize(24);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-   
+    this->_window.clear(sf::Color(150, 150, 150));
 }
 
 void GUIRender::render(HostNameModule *m) {
@@ -61,12 +61,11 @@ void GUIRender::render(HostNameModule *m) {
     text4.setStyle(sf::Text::Bold);
     text4.setPosition(0, 130);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
     this->_window.draw(text4);
-    //this->_window.display();
 }
 
 void GUIRender::render(OSInfoModule *m) {
@@ -107,7 +106,6 @@ void GUIRender::render(OSInfoModule *m) {
     this->_window.draw(text2);
     this->_window.draw(text3);
     this->_window.draw(text4);
-    //this->_window.display();
 
 }
 
@@ -136,7 +134,7 @@ void GUIRender::render(DateTimeModule *m) {
     text3.setStyle(sf::Text::Bold);
     text3.setPosition(0, 420);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
@@ -176,7 +174,7 @@ void GUIRender::render(CPUModule *m) {
     text4.setStyle(sf::Text::Bold);
     text4.setPosition(0, 590);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
