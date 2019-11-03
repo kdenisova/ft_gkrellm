@@ -66,7 +66,7 @@ void GUIRender::render(HostNameModule *m) {
     this->_window.draw(text2);
     this->_window.draw(text3);
     this->_window.draw(text4);
-    this->_window.display();
+    //this->_window.display();
 }
 
 void GUIRender::render(OSInfoModule *m) {
@@ -102,12 +102,12 @@ void GUIRender::render(OSInfoModule *m) {
     text4.setStyle(sf::Text::Bold);
     text4.setPosition(0, 300);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
     this->_window.draw(text4);
-    this->_window.display();
+    //this->_window.display();
 
 }
 
@@ -236,6 +236,8 @@ bool GUIRender::isOpen() {
 
 void GUIRender::tick() {
     //this->_window.clear(sf::Color(150, 150, 150));
+    this->_window.display();
+
     sf::Event event;
     while (this->_window.pollEvent(event))
     {
