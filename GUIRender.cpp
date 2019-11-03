@@ -61,7 +61,7 @@ void GUIRender::render(HostNameModule *m) {
     text4.setStyle(sf::Text::Bold);
     text4.setPosition(0, 130);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
@@ -220,6 +220,7 @@ bool GUIRender::isOpen() {
 void GUIRender::tick() {
     //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.display();
+    this->_window.clear(sf::Color(150, 150, 150));
 
     sf::Event event;
     while (this->_window.pollEvent(event))
