@@ -6,7 +6,7 @@
 
 NCursesRenderer::NCursesRenderer(int size) {
 	this->_x = size;
-	this->_y = 46;
+	this->_y = 52;
 	cbreak();
 	nodelay(stdscr, TRUE);
 	initscr(); // Initialize the NCursesRenderer
@@ -19,7 +19,7 @@ NCursesRenderer::NCursesRenderer(int size) {
 	refresh();
 	box(this->_win, 0, 0);
 	mvwprintw(this->_win, 1, this->_y / 2 - 6, "*FT_GKRELLM*");
-	mvwprintw(this->_win, 2, 1, "____________________________________________");
+	putBoard(2);
 	wrefresh(this->_win);
 }
 
@@ -29,7 +29,7 @@ void NCursesRenderer::render(HostNameModule *m) {
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getHostName()) / 2, m->getHostName().c_str());
 	mvwprintw(this->_win, pos + 4, this->_y / 2 - m->getSize(m->getUserName()) / 2, m->getUserName().c_str());
 	if (pos + 5 < this->_x - 1)
-		mvwprintw(this->_win, pos + 5, 1, "____________________________________________");
+		putBoard(pos + 5);
 	wrefresh(this->_win);
 }
 
@@ -39,7 +39,7 @@ void NCursesRenderer::render(OSInfoModule *m) {
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getType()) / 2, m->getType().c_str());
 	mvwprintw(this->_win, pos + 4, this->_y / 2 - m->getSize(m->getRelease()) / 2, m->getRelease().c_str());
 	if (pos + 5 < this->_x - 1)
-		mvwprintw(this->_win, pos + 5, 1, "____________________________________________");
+		putBoard(pos + 5);
 	wrefresh(this->_win);
 }
 
@@ -48,7 +48,7 @@ void NCursesRenderer::render(DateTimeModule *m) {
 	mvwprintw(this->_win, pos, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getDate()) / 2, m->getDate().c_str());
 	if (pos + 3 < this->_x - 1)
-		mvwprintw(this->_win, pos + 3, 1, "____________________________________________");
+		putBoard(pos + 3);
 	wrefresh(this->_win);
 }
 
@@ -73,7 +73,7 @@ void NCursesRenderer::render(CPUModule *m) {
 		i++;
 	}
 	if (pos + 16 < this->_x - 1)
-		mvwprintw(this->_win, pos + 16, 1, "____________________________________________");
+		putBoard(pos + 16);
 	wrefresh(this->_win);
 }
 
@@ -82,7 +82,7 @@ void NCursesRenderer::render(RAMModule *m) {
 	mvwprintw(this->_win, pos, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getInfo()) / 2, m->getInfo().c_str());
 	if (pos + 3 < this->_x - 1)
-		mvwprintw(this->_win, pos + 3, 1, "____________________________________________");
+		putBoard(pos + 3);
 	wrefresh(this->_win);
 }
 
@@ -91,7 +91,7 @@ void NCursesRenderer::render(NetworkModule *m) {
 	mvwprintw(this->_win, pos, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getInfo()) / 2, m->getInfo().c_str());
 	if (pos + 3 < this->_x - 1)
-		mvwprintw(this->_win, pos + 3, 1, "____________________________________________");
+		putBoard(pos + 3);
 	wrefresh(this->_win);
 }
 
@@ -100,7 +100,7 @@ void NCursesRenderer::render(DisksModule *m) {
 	mvwprintw(this->_win, pos, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getInfo()) / 2, m->getInfo().c_str());
 	if (pos + 3 < this->_x - 1)
-		mvwprintw(this->_win, pos + 3, 1, "____________________________________________");
+		putBoard(pos + 3);
 	wrefresh(this->_win);
 }
 
@@ -110,7 +110,12 @@ bool NCursesRenderer::isOpen() {
 
 void NCursesRenderer::tick() {
 	usleep(1000000);
- }
+}
+
+void NCursesRenderer::putBoard(int pos) {
+	for (int i = 1; i < this->_y - 1; i ++) 
+		mvwprintw(this->_win, pos, i, "_");
+}
 
 NCursesRenderer::~NCursesRenderer() {
 	endwin();

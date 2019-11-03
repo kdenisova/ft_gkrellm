@@ -34,6 +34,7 @@ public:
 
     bool isOpen();
     void tick();
+    void putBoard(int pos);
 };
 
 #endif

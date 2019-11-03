@@ -18,8 +18,8 @@ private:
 	sf::RenderWindow _window;
 	sf::Font _font;
 	//WINDOW  *_win;
-	// int     _x;
-	// int     _y;
+	int     _x;
+	int     _y;
 
 public:
 

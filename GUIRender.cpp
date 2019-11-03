@@ -7,7 +7,9 @@
 # include <SFML/Window.hpp>
 
 GUIRender::GUIRender() {
-    this->_window.create(sf::VideoMode(600, 1600), "ft_gkrelmm");
+    this->_x = 600;
+    this->_y = 1600;
+    this->_window.create(sf::VideoMode(this->_x, this->_y), "ft_gkrelmm");
 
     sf::RectangleShape module(sf::Vector2f(600, 200));
     module.setFillColor(sf::Color::White);
@@ -24,72 +26,109 @@ GUIRender::GUIRender() {
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
    
-    /*
-    while (this->_window.isOpen())
-    {
-        sf::Event event;
-        while (this->_window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                this->_window.close();
-        }
-
-        _window.clear(sf::Color(150, 150, 150));
-        //window.draw(module);
-        _window.draw(text);
-
-        this->_window.display();
-    }
-    */
-
-    // this->_x = 47;
-	// this->_y = 44;
-	// cbreak();
-	// nodelay(stdscr, TRUE);
-	// initscr(); // Initialize the GUIRender
-	// noecho();
-	// timeout(1);
-	// keypad(stdscr, true);
-	// curs_set(FALSE); // Don't display a cursor
-
-	// this->_win = newwin(this->_x, this->_y, 0, 0);
-	// refresh();
-	// box(this->_win, 0, 0);
-	// mvwprintw(this->_win, 1, this->_y / 2 - 6, "*FT_GKRELLM*");
-	// mvwprintw(this->_win, 2, 1, "__________________________________________");
-	// wrefresh(this->_win);
 }
 
 void GUIRender::render(HostNameModule *m) {
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
-    text.setCharacterSize(24);
+    text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 0);
 
     sf::Text text2;
     text2.setFont(this->_font);
     text2.setString(m->getHostName());
-    text2.setCharacterSize(24);
+    text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(20.f, 50.f);
+    text2.setPosition(10, 50);
+
+    sf::Text text3;
+    text3.setFont(this->_font);
+    text3.setString(m->getUserName());
+    text3.setCharacterSize(28);
+    text3.setFillColor(sf::Color::Black);
+    text3.setStyle(sf::Text::Bold);
+    text3.setPosition(10, 100);
+
+    sf::Text text4;
+    text4.setFont(this->_font);
+    text4.setString("______________________________________");
+    text4.setCharacterSize(28);
+    text4.setFillColor(sf::Color::Black);
+    text4.setStyle(sf::Text::Bold);
+    text4.setPosition(0, 130);
 
     this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
+    this->_window.draw(text3);
+    this->_window.draw(text4);
     this->_window.display();
-
-	// mvwprintw(this->_win, 3, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
-	// mvwprintw(this->_win, 5, this->_y / 2 - m->getSize(m->getHostName()) / 2, m->getHostName().c_str());
-	// mvwprintw(this->_win, 7, this->_y / 2 - m->getSize(m->getUserName()) / 2, m->getUserName().c_str());
-	// mvwprintw(this->_win, 8, 1, "__________________________________________");
-	// wrefresh(this->_win);
 }
 
 void GUIRender::render(OSInfoModule *m) {
-     m->getName();
+    sf::Text text;
+    text.setFont(this->_font);
+    text.setString(m->getName());
+    text.setCharacterSize(30);
+    text.setFillColor(sf::Color::Black);
+    text.setStyle(sf::Text::Bold);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 170);
+
+    sf::Text text2;
+    text2.setFont(this->_font);
+    text2.setString(m->getType());
+    text2.setCharacterSize(28);
+    text2.setFillColor(sf::Color::Black);
+    text2.setStyle(sf::Text::Bold);
+    text2.setPosition(10, 220);
+
+    sf::Text text3;
+    text3.setFont(this->_font);
+    text3.setString(m->getRelease());
+    text3.setCharacterSize(28);
+    text3.setFillColor(sf::Color::Black);
+    text3.setStyle(sf::Text::Bold);
+    text3.setPosition(10, 270);
+
+    sf::Text text4;
+    text4.setFont(this->_font);
+    text4.setString("______________________________________");
+    text4.setCharacterSize(28);
+    text4.setFillColor(sf::Color::Black);
+    text4.setStyle(sf::Text::Bold);
+    text4.setPosition(0, 300);
+
+    this->_window.clear(sf::Color(150, 150, 150));
+    this->_window.draw(text);
+    this->_window.draw(text2);
+    this->_window.draw(text3);
+    this->_window.draw(text4);
+    this->_window.display();
+
+    // sf::Text text;
+    // text.setFont(this->_font);
+    // text.setString(m->getName());
+    // text.setCharacterSize(24);
+    // text.setFillColor(sf::Color::Black);
+    // text.setStyle(sf::Text::Bold);
+    // text.setPosition(40.f, 50.f);
+
+    // sf::Text text2;
+    // text2.setFont(this->_font);
+    // text2.setString(m->getType());
+    // text2.setCharacterSize(24);
+    // text2.setFillColor(sf::Color::Black);
+    // text2.setStyle(sf::Text::Bold);
+    // text2.setPosition(60.f, 50.f);
+
+    // this->_window.clear(sf::Color(150, 150, 150));
+    // this->_window.draw(text);
+    // this->_window.draw(text2);
+    // this->_window.display();
 
 	// mvwprintw(this->_win, 9, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	// mvwprintw(this->_win, 11, this->_y / 2 - m->getSize(m->getType()) / 2, m->getType().c_str());
@@ -122,7 +161,7 @@ void GUIRender::render(CPUModule *m) {
     text2.setStyle(sf::Text::Bold);
     text2.setPosition(40.f, 50.f);
 
-    this->_window.clear(sf::Color(150, 150, 150));
+    //this->_window.clear(sf::Color(150, 150, 150));
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.display();
@@ -179,6 +218,7 @@ bool GUIRender::isOpen() {
 }
 
 void GUIRender::tick() {
+    //this->_window.clear(sf::Color(150, 150, 150));
     sf::Event event;
     while (this->_window.pollEvent(event))
     {
