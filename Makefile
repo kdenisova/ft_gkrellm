@@ -5,8 +5,8 @@ NAME = ft_gkrellm
 DEPDIR := .deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 
-CXX_FLAGS = -Wall -Wextra -Werror -g
-LINK_FLAGS = -lncurses -lsfml-graphics -lsfml-window -lsfml-system
+CXX_FLAGS = -Wall -Wextra -Werror -g -I ~/.brew/Cellar/sfml/2.5.1/include 
+LINK_FLAGS = -lncurses -lsfml-graphics -lsfml-window -lsfml-system -L ~/.brew/Cellar/sfml/2.5.1/lib
 
 SRC = main.cpp NCursesRenderer.cpp IMonitorModule.cpp IMonitorDisplay.cpp HostNameModule.cpp OSInfoModule.cpp \
 DateTimeModule.cpp CPUModule.cpp RAMModule.cpp NetworkModule.cpp DisksModule.cpp GUIRender.cpp
