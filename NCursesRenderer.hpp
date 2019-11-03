@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   NCursesRenderer.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kdenisov <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 14:17:57 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/01 14:17:58 by kdenisov         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef NCursesRenderer_H
 # define NCursesRenderer_H
@@ -27,11 +16,10 @@ private:
     WINDOW  *_win;
     int     _x;
     int     _y;
-    //int     _pos;
 
 public:
 
-	NCursesRenderer();
+	NCursesRenderer(int size);
 	~NCursesRenderer();
     NCursesRenderer(NCursesRenderer const & src);
 	NCursesRenderer & operator=(NCursesRenderer const & rfs);
@@ -44,6 +32,8 @@ public:
     void render(class NetworkModule *);
     void render(class DisksModule *);
 
+    bool isOpen();
+    void tick();
 };
 
 #endif

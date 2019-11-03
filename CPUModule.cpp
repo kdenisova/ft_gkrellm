@@ -6,7 +6,7 @@
 #include <sys/sysctl.h>
 #include "CPUModule.hpp"
 
-CPUModule::CPUModule() {
+CPUModule::CPUModule(int pos) : _pos(pos) {
 	this->_module = "CPU";
 
     char info[100];
@@ -54,10 +54,15 @@ void CPUModule::refresh() {
 		std::cerr << e.what() << std::endl;
 	}
     this->_stat.push_back(usage);
+    ifs.close();
 }
 
 std::string CPUModule::getName() const {
 	return (this->_module);
+}
+
+int	    CPUModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string CPUModule::getInfo() const {

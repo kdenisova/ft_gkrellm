@@ -17,11 +17,11 @@ public:
 	virtual ~IMonitorModule() {}
     
     virtual std::string getName() const = 0;
-    
-    virtual void refresh() = 0;
+    virtual int         getPos() const = 0;
+    virtual void        refresh() = 0;
 
     //visitor pattern
-    virtual void render(class IMonitorDisplay *) = 0;
+    virtual void        render(class IMonitorDisplay *) = 0;
 
 };
 

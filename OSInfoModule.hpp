@@ -14,14 +14,16 @@ private:
 	std::string _module;
 	std::string	_type;
     std::string	_release;
-
+	int			_pos;
+	
 public:
-    OSInfoModule();
+    OSInfoModule(int pos);
 	virtual ~OSInfoModule();
 	OSInfoModule(OSInfoModule const & src);
 	OSInfoModule & operator=(OSInfoModule const & rfs);
 
 	std::string getName() const;
+	int			getPos() const;
 	std::string getType() const;
     std::string getRelease() const;
 

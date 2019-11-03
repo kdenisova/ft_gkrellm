@@ -11,18 +11,57 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <fstream>
 #include "NCursesRenderer.hpp"
+#include "GUIRender.hpp"
 
-std::vector<IMonitorModule*> getSelectedModules() {
+std::vector<IMonitorModule*> getSelectedModules(int *size) {
+	std::ifstream ifs("config");
+	try {
+		if (!ifs.is_open())
+			throw std::exception();
+	}
+	catch(std::exception& e) {
+		std::cerr << e.what() << ": config file does not find" << std::endl;
+		exit (1);
+	}
+
+	std::string buff;
 	std::vector<IMonitorModule*> m;
-	m.push_back(new OSInfoModule());
-	m.push_back(new HostNameModule());
-	m.push_back(new DateTimeModule());
-	m.push_back(new CPUModule());
-	m.push_back(new RAMModule());
-	m.push_back(new NetworkModule());
-	m.push_back(new DisksModule());
 
+	while (std::getline(ifs, buff)) {
+		if (buff.compare("+HOSTNAME") == 0) {
+			m.push_back(new HostNameModule(*size));
+			*size += 6;
+		}
+		if (buff.compare("+OSINFO") == 0) {
+			m.push_back(new OSInfoModule(*size));
+			*size += 6;
+		}
+		if (buff.compare("+DATE/TIME") == 0)
+		{
+			m.push_back(new DateTimeModule(*size));
+			*size += 4;
+		}
+		if (buff.compare("+CPU") == 0) {
+			m.push_back(new CPUModule(*size));
+			*size += 17;
+		}
+		if (buff.compare("+RAM") == 0) {
+			m.push_back(new RAMModule(*size));
+			*size += 4;
+		}	
+		if (buff.compare("+NETWORK") == 0) {
+			m.push_back(new NetworkModule(*size));
+			*size += 4;
+		}
+		if (buff.compare("+DISKS") == 0) {
+			m.push_back(new DisksModule(*size));
+			*size += 4;
+		}	
+	}
+	
+	ifs.close();
 	return (m);
 }
 
@@ -39,11 +78,17 @@ int main(int argc, char **argv) {
 	}
 	std::string mode = argv[1];
 
-	if (mode.compare("-t") == 0) {
-		NCursesRenderer win;
+	IMonitorDisplay* display;
 
-		std::vector<IMonitorModule*> modules = getSelectedModules();
-		
+	if (mode.compare("-t") == 0 || mode.compare("-g") == 0) {
+		int size = 3;
+
+		std::vector<IMonitorModule*> modules = getSelectedModules(&size);
+		if (mode.compare("-t") == 0) {
+			display = new NCursesRenderer(size);
+		} else if (mode.compare("-g") == 0) {
+			display = new GUIRender();
+		} 
 		int key;
 		for (;;) {
 			key = getch();
@@ -52,17 +97,40 @@ int main(int argc, char **argv) {
 
 			for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
 				(*it)->refresh();
-				(*it)->render(&win);
+				(*it)->render(display);
 			}
+
 			usleep(1000000);
 		}
-	}
-	else if (mode.compare("-g") == 0) {
-		
+		delete display;
 	}
 	else {
-			putUsage(argv[0]);
+		putUsage(argv[0]);
+		return (0);
 	}
-		
+	
+	
+	
+
+	//std::cout << size << std::endl;
+	// int key;
+	// while (display->isOpen()) {
+	// 	display->tick();
+
+	// 	key = getch();
+	// 	if (key == 27)
+	// 		break;
+
+	// 	for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
+	// 		(*it)->refresh();
+	// 		(*it)->render(display);
+	// 	}
+
+		//usleep(1000000);
+	//}
+
+	
+	
+
 	return (0);
 }

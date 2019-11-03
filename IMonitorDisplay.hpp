@@ -31,6 +31,8 @@ public:
     virtual void render(class NetworkModule *) = 0;
     virtual void render(class DisksModule *) = 0;
 
+    virtual bool isOpen() = 0;
+    virtual void tick() = 0;
 };
 
 #endif

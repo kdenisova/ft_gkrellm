@@ -3,7 +3,7 @@
 #include <string>
 #include "HostNameModule.hpp"
 
-HostNameModule::HostNameModule() {
+HostNameModule::HostNameModule(int pos) : _pos(pos) {
     this->_module = "HOSTNAME";
 
     char buff[50];
@@ -43,6 +43,10 @@ void HostNameModule::refresh() {
 
 std::string HostNameModule::getName() const {
     return (this->_module);
+}
+
+int	    HostNameModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string HostNameModule::getHostName() const {

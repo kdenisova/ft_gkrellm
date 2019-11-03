@@ -5,7 +5,7 @@
 #include <sys/sysctl.h>
 #include "DisksModule.hpp"
 
-DisksModule::DisksModule() {
+DisksModule::DisksModule(int pos) : _pos(pos) {
 	this->_module = "DISKS";
 
 	refresh();
@@ -39,6 +39,10 @@ void DisksModule::refresh() {
 
 std::string DisksModule::getName() const {
 	return (this->_module);
+}
+
+int	    DisksModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string DisksModule::getInfo() const {

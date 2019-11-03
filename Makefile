@@ -6,10 +6,10 @@ DEPDIR := .deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 
 CXX_FLAGS = -Wall -Wextra -Werror -g
-LINK_FLAGS = -lncurses
+LINK_FLAGS = -lncurses -lsfml-graphics -lsfml-window -lsfml-system
 
 SRC = main.cpp NCursesRenderer.cpp IMonitorModule.cpp IMonitorDisplay.cpp HostNameModule.cpp OSInfoModule.cpp \
-DateTimeModule.cpp CPUModule.cpp RAMModule.cpp NetworkModule.cpp DisksModule.cpp
+DateTimeModule.cpp CPUModule.cpp RAMModule.cpp NetworkModule.cpp DisksModule.cpp GUIRender.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

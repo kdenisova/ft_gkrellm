@@ -5,7 +5,7 @@
 #include <sys/sysctl.h>
 #include "DateTimeModule.hpp"
 
-DateTimeModule::DateTimeModule() {
+DateTimeModule::DateTimeModule(int pos) : _pos(pos) {
 	this->_module = "DATE/TIME";
 
 	refresh();
@@ -39,6 +39,10 @@ void DateTimeModule::refresh() {
 
 std::string DateTimeModule::getName() const {
 	return (this->_module);
+}
+
+int	    DateTimeModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string DateTimeModule::getDate() const {

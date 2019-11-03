@@ -5,7 +5,7 @@
 #include <sys/sysctl.h>
 #include "RAMModule.hpp"
 
-RAMModule::RAMModule() {
+RAMModule::RAMModule(int pos) : _pos(pos) {
 	this->_module = "RAM";
 
 	refresh();
@@ -39,6 +39,10 @@ void RAMModule::refresh() {
 
 std::string RAMModule::getName() const {
 	return (this->_module);
+}
+
+int	    RAMModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string RAMModule::getInfo() const {

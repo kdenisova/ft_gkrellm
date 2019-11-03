@@ -5,7 +5,7 @@
 #include <sys/sysctl.h>
 #include "OSInfoModule.hpp"
 
-OSInfoModule::OSInfoModule() {
+OSInfoModule::OSInfoModule(int pos) : _pos(pos){
     this->_module = "OSINFO";
 
 
@@ -45,6 +45,10 @@ void OSInfoModule::refresh() {
 
 std::string OSInfoModule::getName() const {
     return (this->_module);
+}
+
+int	    OSInfoModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string OSInfoModule::getType() const {

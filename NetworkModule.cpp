@@ -5,7 +5,7 @@
 #include <sys/sysctl.h>
 #include "NetworkModule.hpp"
 
-NetworkModule::NetworkModule() {
+NetworkModule::NetworkModule(int pos) : _pos(pos) {
 	this->_module = "NETWORK";
 
 	refresh();
@@ -39,6 +39,10 @@ void NetworkModule::refresh() {
 
 std::string NetworkModule::getName() const {
 	return (this->_module);
+}
+
+int	    NetworkModule::getPos() const {
+    return (this->_pos);
 }
 
 std::string NetworkModule::getInfo() const {
