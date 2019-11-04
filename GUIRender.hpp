@@ -25,14 +25,16 @@
 class GUIRender : public IMonitorDisplay {
 
 private:
-	sf::RenderWindow _window;
-	sf::Font _font;
-	int     _x;
-	int     _y;
+
+	GUIRender();
+	sf::RenderWindow	_window;
+	sf::Font 			_font;
+	int     			_x;
+	int    				_y;
 
 public:
 
-	GUIRender();
+	GUIRender(int gsize);
 	~GUIRender();
 	GUIRender(GUIRender const & src);
 	GUIRender & operator=(GUIRender const & rfs);

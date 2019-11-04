@@ -24,6 +24,8 @@
 class NCursesRenderer : public IMonitorDisplay {
 
 private:
+
+    NCursesRenderer();
     WINDOW  *_win;
     int     _x;
     int     _y;
@@ -46,6 +48,7 @@ public:
     bool isOpen();
     void tick();
     void putBoard(int pos);
+
 };
 
 #endif

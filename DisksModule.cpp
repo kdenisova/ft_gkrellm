@@ -16,7 +16,10 @@
 #include <sys/sysctl.h>
 #include "DisksModule.hpp"
 
-DisksModule::DisksModule(int pos) : _pos(pos) {
+DisksModule::DisksModule() {
+}
+
+DisksModule::DisksModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
 	this->_module = "DISKS";
 
 	refresh();
@@ -32,6 +35,8 @@ DisksModule::DisksModule(DisksModule const & src) {
 DisksModule & DisksModule::operator=(DisksModule const & rfs) {
 	this->_module = rfs._module;
 	this->_info = rfs._info;
+	this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -65,6 +70,10 @@ std::string DisksModule::getName() const {
 
 int	    DisksModule::getPos() const {
     return (this->_pos);
+}
+
+int	    DisksModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string DisksModule::getInfo() const {

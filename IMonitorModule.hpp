@@ -14,7 +14,6 @@
 # define IMONITORMODULE_H
 
 # include <iostream>
-//# include "IMonitorDisplay.hpp"
 
 class IMonitorModule {
 
@@ -28,7 +27,6 @@ public:
 	virtual ~IMonitorModule() {}
     
     virtual std::string getName() const = 0;
-    virtual int         getPos() const = 0;
     virtual void        refresh() = 0;
     
     //visitor pattern

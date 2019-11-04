@@ -21,19 +21,22 @@ class OSInfoModule : public IMonitorModule {
 
 private:
 
+	OSInfoModule();
 	std::string _module;
 	std::string	_type;
     std::string	_release;
 	int			_pos;
+	int			_gpos;
 	
 public:
-    OSInfoModule(int pos);
+    OSInfoModule(int pos, int gpos);
 	virtual ~OSInfoModule();
 	OSInfoModule(OSInfoModule const & src);
 	OSInfoModule & operator=(OSInfoModule const & rfs);
 
 	std::string getName() const;
 	int			getPos() const;
+	int   		getGPos() const;
 	std::string getType() const;
     std::string getRelease() const;
 

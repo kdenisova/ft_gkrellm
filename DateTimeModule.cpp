@@ -15,7 +15,10 @@
 #include <sys/sysctl.h>
 #include "DateTimeModule.hpp"
 
-DateTimeModule::DateTimeModule(int pos) : _pos(pos) {
+DateTimeModule::DateTimeModule() {
+}
+
+DateTimeModule::DateTimeModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
 	this->_module = "DATE/TIME";
 
 	refresh();
@@ -31,6 +34,8 @@ DateTimeModule::DateTimeModule(DateTimeModule const & src) {
 DateTimeModule & DateTimeModule::operator=(DateTimeModule const & rfs) {
 	this->_module = rfs._module;
 	this->_date = rfs._date;
+	this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -53,6 +58,10 @@ std::string DateTimeModule::getName() const {
 
 int	    DateTimeModule::getPos() const {
     return (this->_pos);
+}
+
+int	    DateTimeModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string DateTimeModule::getDate() const {

@@ -16,7 +16,10 @@
 #include <sys/sysctl.h>
 #include "RAMModule.hpp"
 
-RAMModule::RAMModule(int pos) : _pos(pos) {
+RAMModule::RAMModule() {
+}
+
+RAMModule::RAMModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
 	this->_module = "RAM";
 
 	refresh();
@@ -32,6 +35,8 @@ RAMModule::RAMModule(RAMModule const & src) {
 RAMModule & RAMModule::operator=(RAMModule const & rfs) {
 	this->_module = rfs._module;
     this->_info = rfs._info;
+	this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -63,6 +68,10 @@ std::string RAMModule::getName() const {
 
 int	    RAMModule::getPos() const {
     return (this->_pos);
+}
+
+int	    RAMModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string RAMModule::getInfo() const {

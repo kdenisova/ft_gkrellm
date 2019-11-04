@@ -14,16 +14,15 @@
 #include <fstream>
 #include "NCursesRenderer.hpp"
 #include "GUIRender.hpp"
-#include "TopListener.hpp"
 
-std::vector<IMonitorModule*> getSelectedModules(int *size) {
+std::vector<IMonitorModule*> getSelectedModules(int *size, int *gsize) {
 	std::ifstream ifs("config");
 	try {
 		if (!ifs.is_open())
 			throw std::exception();
 	}
 	catch(std::exception& e) {
-		std::cerr << e.what() << ": config file does not find" << std::endl;
+		std::cerr << e.what() << ": config file not found" << std::endl;
 		exit (1);
 	}
 
@@ -32,33 +31,40 @@ std::vector<IMonitorModule*> getSelectedModules(int *size) {
 
 	while (std::getline(ifs, buff)) {
 		if (buff.compare("+HOSTNAME") == 0) {
-			m.push_back(new HostNameModule(*size));
+			m.push_back(new HostNameModule(*size, *gsize));
 			*size += 6;
+			*gsize += 170;
 		}
 		if (buff.compare("+OSINFO") == 0) {
-			m.push_back(new OSInfoModule(*size));
+			m.push_back(new OSInfoModule(*size, *gsize));
 			*size += 6;
+			*gsize += 170;
 		}
 		if (buff.compare("+DATE/TIME") == 0)
 		{
-			m.push_back(new DateTimeModule(*size));
+			m.push_back(new DateTimeModule(*size, *gsize));
 			*size += 4;
+			*gsize += 120;
 		}
 		if (buff.compare("+CPU") == 0) {
-			m.push_back(new CPUModule(*size));
+			m.push_back(new CPUModule(*size, *gsize));
 			*size += 17;
+			*gsize += 460;
 		}
 		if (buff.compare("+RAM") == 0) {
-			m.push_back(new RAMModule(*size));
+			m.push_back(new RAMModule(*size, *gsize));
 			*size += 4;
+			*gsize += 120;
 		}	
 		if (buff.compare("+NETWORK") == 0) {
-			m.push_back(new NetworkModule(*size));
+			m.push_back(new NetworkModule(*size, *gsize));
 			*size += 4;
+			*gsize += 120;
 		}
 		if (buff.compare("+DISKS") == 0) {
-			m.push_back(new DisksModule(*size));
+			m.push_back(new DisksModule(*size, *gsize));
 			*size += 4;
+			*gsize += 120;
 		}	
 	}
 	
@@ -83,19 +89,17 @@ int main(int argc, char **argv) {
 
 	if (mode.compare("-t") == 0 || mode.compare("-g") == 0) {
 		int size = 3;
-		std::vector<IMonitorModule*> modules = getSelectedModules(&size);
+		int gsize = 0;
+		std::vector<IMonitorModule*> modules = getSelectedModules(&size, &gsize);
 
 		if (mode.compare("-t") == 0) {
 			display = new NCursesRenderer(size);
 		} else if (mode.compare("-g") == 0) {
-			display = new GUIRender();
+			display = new GUIRender(gsize);
 		} else {
-			std::cout << "unknown renderer type" << std::endl;
-			return(1);
+			putUsage(argv[0]);
+			return (0);
 		}
-
-		//TopListener listener;
-		//listener.start();
 
 		while (display->isOpen()) {
 			display->tick();
@@ -110,23 +114,9 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		//listener.stop();
-
-		/*
-		int key;
-		for (;;) {
-			key = getch();
-			if (key == 27)
-				break ;
-
-			for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
-				(*it)->refresh();
-				(*it)->render(display);
-			}
-
-			usleep(1000000);
+		for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {	
+			delete (*it);
 		}
-		*/
 
 		delete display;
 	}
@@ -134,29 +124,5 @@ int main(int argc, char **argv) {
 		putUsage(argv[0]);
 		return (0);
 	}
-	
-	
-	
-
-	//std::cout << size << std::endl;
-	// int key;
-	// while (display->isOpen()) {
-	// 	display->tick();
-
-	// 	key = getch();
-	// 	if (key == 27)
-	// 		break;
-
-	// 	for (std::vector<IMonitorModule*>::iterator it = modules.begin(); it != modules.end(); it++) {
-	// 		(*it)->refresh();
-	// 		(*it)->render(display);
-	// 	}
-
-		//usleep(1000000);
-	//}
-
-	
-	
-
 	return (0);
 }

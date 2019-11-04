@@ -15,7 +15,10 @@
 #include <sys/sysctl.h>
 #include "OSInfoModule.hpp"
 
-OSInfoModule::OSInfoModule(int pos) : _pos(pos){
+OSInfoModule::OSInfoModule() {
+}
+
+OSInfoModule::OSInfoModule(int pos, int gpos) : _pos(pos), _gpos(gpos){
     this->_module = "OSINFO";
 
 
@@ -43,6 +46,8 @@ OSInfoModule & OSInfoModule::operator=(OSInfoModule const & rfs) {
 	this->_module = rfs._module;
     this->_type = rfs._type;
     this->_release = rfs._release;
+    this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -59,6 +64,10 @@ std::string OSInfoModule::getName() const {
 
 int	    OSInfoModule::getPos() const {
     return (this->_pos);
+}
+
+int	    OSInfoModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string OSInfoModule::getType() const {

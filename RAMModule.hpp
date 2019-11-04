@@ -21,12 +21,15 @@ class RAMModule : public IMonitorModule {
 
 private:
 
+	RAMModule();
 	std::string _module;
 	std::string _info;
 	int			_pos;
+	int 		_gpos;
 
 public:
-	RAMModule(int pos);
+
+	RAMModule(int pos, int gpos);
 	virtual ~RAMModule();
 	RAMModule(RAMModule const & src);
 	RAMModule & operator=(RAMModule const & rfs);
@@ -35,6 +38,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	int			getPos() const;
+	int			getGPos() const;
 	std::string getInfo() const;
 	int			getSize(std::string const name) const;
 

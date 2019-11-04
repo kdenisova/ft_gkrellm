@@ -15,6 +15,9 @@
 #include "HostNameModule.hpp"
 #include "OSInfoModule.hpp"
 
+NCursesRenderer::NCursesRenderer() {
+}
+
 NCursesRenderer::NCursesRenderer(int size) {
 	this->_x = size;
 	this->_y = 52;
@@ -67,9 +70,8 @@ void NCursesRenderer::render(CPUModule *m) {
 	int pos = m->getPos();
 	mvwprintw(this->_win, pos, this->_y / 2 - m->getSize(m->getName()) / 2, m->getName().c_str());
 	mvwprintw(this->_win, pos + 2, this->_y / 2 - m->getSize(m->getInfo()) / 2, m->getInfo().c_str());
-	//mvwprintw(this->_win, pos + 4, 15, "                            ");
+	mvwprintw(this->_win, pos + 4, 15, "                            ");
 	mvwprintw(this->_win, pos + 4, this->_y / 2 - m->getSize(m->getUsage()) / 2, m->getUsage().c_str());
-	//std::cout << m->getUsage() << std::endl;
 	std::list<float> chart = m->getLastUsage(this->_y - 2);
 	int x;
 	int i = 1;
@@ -137,7 +139,9 @@ NCursesRenderer::NCursesRenderer(NCursesRenderer const & src) {
 }
 
 NCursesRenderer & NCursesRenderer::operator=(NCursesRenderer const & rfs) {
-	(void)rfs;
+	this->_win = rfs._win;
+	this->_x = rfs._x;
+	this->_y = rfs._y;
 	return (*this);
 }
 

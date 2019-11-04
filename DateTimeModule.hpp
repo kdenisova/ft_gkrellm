@@ -21,12 +21,15 @@ class DateTimeModule : public IMonitorModule {
 
 private:
 
+	DateTimeModule();
 	std::string _module;
 	std::string	_date;
 	int			_pos;
+	int 		_gpos;
 
 public:
-    DateTimeModule(int pos);
+
+    DateTimeModule(int pos, int gpos);
 	virtual ~DateTimeModule();
 	DateTimeModule(DateTimeModule const & src);
 	DateTimeModule & operator=(DateTimeModule const & rfs);
@@ -35,6 +38,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	int			getPos() const;
+	int			getGPos() const;
 	std::string getDate() const;
     int			getSize(std::string const name) const;
 

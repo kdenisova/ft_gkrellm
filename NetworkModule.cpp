@@ -16,7 +16,10 @@
 #include <sys/sysctl.h>
 #include "NetworkModule.hpp"
 
-NetworkModule::NetworkModule(int pos) : _pos(pos) {
+NetworkModule::NetworkModule() {
+}
+
+NetworkModule::NetworkModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
 	this->_module = "NETWORK";
 
 	refresh();
@@ -32,6 +35,8 @@ NetworkModule::NetworkModule(NetworkModule const & src) {
 NetworkModule & NetworkModule::operator=(NetworkModule const & rfs) {
 	this->_module = rfs._module;
     this->_info = rfs._info;
+	this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -64,6 +69,10 @@ std::string NetworkModule::getName() const {
 
 int	    NetworkModule::getPos() const {
     return (this->_pos);
+}
+
+int	    NetworkModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string NetworkModule::getInfo() const {

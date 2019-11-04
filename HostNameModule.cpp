@@ -15,7 +15,10 @@
 #include <string>
 #include "HostNameModule.hpp"
 
-HostNameModule::HostNameModule(int pos) : _pos(pos) {
+HostNameModule::HostNameModule() {
+}
+
+HostNameModule::HostNameModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
     this->_module = "HOSTNAME";
 
     char buff[50];
@@ -54,6 +57,8 @@ HostNameModule & HostNameModule::operator=(HostNameModule const & rfs) {
 	this->_module = rfs._module;
     this->_host = rfs._host;
     this->_user = rfs._user;
+    this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -70,6 +75,10 @@ std::string HostNameModule::getName() const {
 
 int	    HostNameModule::getPos() const {
     return (this->_pos);
+}
+
+int	    HostNameModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string HostNameModule::getHostName() const {

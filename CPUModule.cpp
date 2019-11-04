@@ -17,14 +17,15 @@
 #include <sys/sysctl.h>
 #include "CPUModule.hpp"
 
-CPUModule::CPUModule(int pos) : _pos(pos) {
+CPUModule::CPUModule() {
+}
+
+CPUModule::CPUModule(int pos, int gpos) : _pos(pos), _gpos(gpos) {
 	this->_module = "CPU";
 
     char info[100];
     size_t size = 100;
     
-    
-
     sysctlbyname("machdep.cpu.brand_string", &info, &size, NULL, 0);
     this->_info = info;
 
@@ -43,6 +44,8 @@ CPUModule & CPUModule::operator=(CPUModule const & rfs) {
     this->_info = rfs._info;
     this->_usage = rfs._usage;
     this->_stat = rfs._stat;
+    this->_pos = rfs._pos;
+    this->_gpos = rfs._gpos;
 	return (*this);
 }
 
@@ -67,9 +70,8 @@ void CPUModule::refresh() {
 
     std::string buff;
     std::getline(ifs, buff);
-    
+    this->_usage = "Usage: " + buff;
     buff.erase(buff.length() - 1, buff.length());
-    this->_usage = "Usage: " + buff + "%";
     float usage;
     try {
 		usage = static_cast<float>(std::stof(buff));
@@ -88,6 +90,10 @@ std::string CPUModule::getName() const {
 
 int	    CPUModule::getPos() const {
     return (this->_pos);
+}
+
+int	    CPUModule::getGPos() const {
+    return (this->_gpos);
 }
 
 std::string CPUModule::getInfo() const {

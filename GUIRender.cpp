@@ -18,15 +18,22 @@
 #include <SFML/Window.hpp>
 
 GUIRender::GUIRender() {
+}
+
+GUIRender::GUIRender(int gsize) {
     this->_x = 700;
-    this->_y = 1270;
+    this->_y = gsize;
     this->_window.create(sf::VideoMode(this->_x, this->_y), "ft_gkrelmm");
     this->_window.setFramerateLimit(60);
 
-    if (!this->_font.loadFromFile("Roboto-Regular.ttf"))
-    {
-        std::cout << "no font!" << std::endl;
-    }
+    try {
+		if (!this->_font.loadFromFile("Roboto-Regular.ttf"))
+			throw std::exception();
+	}
+	catch(std::exception& e) {
+		std::cerr << e.what() << "(GUIRender)" << ": Font not found" << std::endl;
+		exit(1);
+	}
 
     sf::Text text;
     text.setFont(this->_font);
@@ -38,13 +45,14 @@ GUIRender::GUIRender() {
 }
 
 void GUIRender::render(HostNameModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 0);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -52,7 +60,7 @@ void GUIRender::render(HostNameModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 50);
+    text2.setPosition(10, pos + 50);
 
     sf::Text text3;
     text3.setFont(this->_font);
@@ -60,22 +68,23 @@ void GUIRender::render(HostNameModule *m) {
     text3.setCharacterSize(28);
     text3.setFillColor(sf::Color::Black);
     text3.setStyle(sf::Text::Bold);
-    text3.setPosition(10, 100);
+    text3.setPosition(10, pos + 100);
 
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
-    putBoard(130);
+    putBoard(pos + 130);
 }
 
 void GUIRender::render(OSInfoModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 170);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -83,7 +92,7 @@ void GUIRender::render(OSInfoModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 220);
+    text2.setPosition(10, pos + 50);
 
     sf::Text text3;
     text3.setFont(this->_font);
@@ -91,23 +100,24 @@ void GUIRender::render(OSInfoModule *m) {
     text3.setCharacterSize(28);
     text3.setFillColor(sf::Color::Black);
     text3.setStyle(sf::Text::Bold);
-    text3.setPosition(10, 270);
+    text3.setPosition(10, pos + 100);
 
     this->_window.draw(text);
     this->_window.draw(text2);
     this->_window.draw(text3);
-    putBoard(300);
+    putBoard(pos + 130);
 
 }
 
 void GUIRender::render(DateTimeModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 340);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -115,21 +125,22 @@ void GUIRender::render(DateTimeModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 390);
+    text2.setPosition(10, pos + 50);
 
     this->_window.draw(text);
     this->_window.draw(text2);
-    putBoard(420);
+    putBoard(pos + 80);
 }
 
 void GUIRender::render(CPUModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 460);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -137,7 +148,7 @@ void GUIRender::render(CPUModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 510);
+    text2.setPosition(10, pos + 50);
 
     sf::Text text4;
     text4.setFont(this->_font);
@@ -145,7 +156,7 @@ void GUIRender::render(CPUModule *m) {
     text4.setCharacterSize(28);
     text4.setFillColor(sf::Color::Black);
     text4.setStyle(sf::Text::Bold);
-    text4.setPosition(10, 560);
+    text4.setPosition(10, pos + 100);
 
     this->_window.draw(text);
     this->_window.draw(text2);
@@ -156,7 +167,7 @@ void GUIRender::render(CPUModule *m) {
     int border_offset = 4;      // main form border size
     int bar_thickness = 17;     // chart bar thickness
     int interpolation = 2;     // Y-axis interpolation multiplier
-    int base_line     = 860;   // Y chart base line
+    int base_line     = pos + 420;   // Y chart base line
 
     std::list<float> chart_data = m->getLastUsage((this->_x - border_offset)/bar_thickness);
 
@@ -168,17 +179,18 @@ void GUIRender::render(CPUModule *m) {
         rec_bar.move(offset+=bar_thickness, base_line - __height_px); // move this way <-<-<-<
         this->_window.draw(rec_bar);
     }
-    putBoard(870);
+    putBoard(pos + 420);
 }
 
 void GUIRender::render(RAMModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 910);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -186,21 +198,22 @@ void GUIRender::render(RAMModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 960);
+    text2.setPosition(10, pos + 50);
 
     this->_window.draw(text);
     this->_window.draw(text2);
-    putBoard(1000);
+    putBoard(pos + 80);
 }
 
 void GUIRender::render(NetworkModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 1030);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -208,21 +221,22 @@ void GUIRender::render(NetworkModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 1080);
+    text2.setPosition(10, pos + 50);
 
     this->_window.draw(text);
     this->_window.draw(text2);
-    putBoard(1120);
+    putBoard(pos + 80);
 }
 
 void GUIRender::render(DisksModule *m) {
+    int pos = m->getGPos();
     sf::Text text;
     text.setFont(this->_font);
     text.setString(m->getName());
     text.setCharacterSize(30);
     text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, 1150);
+    text.setPosition(this->_x / 2 - m->getSize(m->getName()) * 10, pos);
 
     sf::Text text2;
     text2.setFont(this->_font);
@@ -230,11 +244,11 @@ void GUIRender::render(DisksModule *m) {
     text2.setCharacterSize(28);
     text2.setFillColor(sf::Color::Black);
     text2.setStyle(sf::Text::Bold);
-    text2.setPosition(10, 1200);
+    text2.setPosition(10, pos + 50);
 
     this->_window.draw(text);
     this->_window.draw(text2);
-    putBoard(1240);
+    putBoard(pos + 80);
 }
 
 bool GUIRender::isOpen() {
@@ -274,7 +288,8 @@ GUIRender::GUIRender(GUIRender const & src) {
 }
 
 GUIRender & GUIRender::operator=(GUIRender const & rfs) {
-	(void)rfs;
+    this->_font = rfs._font;
+	this->_x = rfs._x;
+	this->_y = rfs._y;
 	return (*this);
 }
-

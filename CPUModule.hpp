@@ -23,14 +23,17 @@ class CPUModule : public IMonitorModule {
 
 private:
 
+	CPUModule();
 	std::string 		_module;
 	std::string 		_info;
 	std::string			_usage;
 	std::vector<float> 	_stat;
 	int					_pos;
+	int 				_gpos;
 
 public:
-	CPUModule(int pos);
+
+	CPUModule(int pos, int gpos);
 	virtual ~CPUModule();
 	CPUModule(CPUModule const & src);
 	CPUModule & operator=(CPUModule const & rfs);
@@ -39,6 +42,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	int			getPos() const;
+	int			getGPos() const;
 	std::string getInfo() const;
 	std::string getUsage() const;
 	std::list<float> getLastUsage(unsigned long n);

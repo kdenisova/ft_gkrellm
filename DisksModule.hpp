@@ -21,12 +21,15 @@ class DisksModule : public IMonitorModule {
 
 private:
 
+	DisksModule();
 	std::string _module;
 	std::string _info;
 	int			_pos;
+	int 		_gpos;
 
 public:
-	DisksModule(int pos);
+
+	DisksModule(int pos, int gpos);
 	virtual ~DisksModule();
 	DisksModule(DisksModule const & src);
 	DisksModule & operator=(DisksModule const & rfs);
@@ -35,6 +38,7 @@ public:
 	void		refresh();
 	std::string getName() const;
 	int			getPos() const;
+	int			getGPos() const;
 	std::string getInfo() const;
 	int			getSize(std::string const name) const;
 
