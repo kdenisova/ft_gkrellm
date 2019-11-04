@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:03:12 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:03:17 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 17:02:10 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,19 @@ HostNameModule::HostNameModule(int pos) : _pos(pos) {
     this->_host = "Hostname: ";
     this->_host += buff;
 
-    system("whoami > userlog");
+    system("whoami > ./logs/userlog");
 
-    std::ifstream ifs("userlog");
+    std::ifstream ifs("./logs/userlog");
+    
+    try {
+		if (!ifs.is_open())
+			throw std::exception();
+	}
+	catch(std::exception& e) {
+		std::cerr << e.what() << "(" << getName() << ")" << ": Failed on openning file" << std::endl;
+		exit(1);
+	}
+
     std::string user;
     std::getline(ifs, user);
     this->_user = "Username: " + user;

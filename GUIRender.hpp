@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:05:18 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:05:19 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:49:32 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class GUIRender : public IMonitorDisplay {
 private:
 	sf::RenderWindow _window;
 	sf::Font _font;
-	//WINDOW  *_win;
 	int     _x;
 	int     _y;
 
@@ -48,6 +47,7 @@ public:
 
 	bool isOpen();
 	void tick();
+	void putBoard(int pos);
 };
 
 #endif

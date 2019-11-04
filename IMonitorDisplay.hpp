@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:06:44 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:06:45 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:49:27 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ public:
 
     virtual bool isOpen() = 0;
     virtual void tick() = 0;
+    virtual void putBoard(int pos) = 0;
 };
 
 #endif

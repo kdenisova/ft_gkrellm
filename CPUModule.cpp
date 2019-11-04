@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:03:32 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:03:35 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 17:05:46 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ CPUModule::CPUModule(int pos) : _pos(pos) {
     char info[100];
     size_t size = 100;
     
+    
+
     sysctlbyname("machdep.cpu.brand_string", &info, &size, NULL, 0);
     this->_info = info;
 
@@ -53,6 +55,16 @@ void CPUModule::refresh() {
     system("top -l 1 | grep \"^CPU usage:\" | awk '{print $3}' > ./logs/cpulog");
 
     std::ifstream ifs("./logs/cpulog");
+
+    try {
+		if (!ifs.is_open())
+			throw std::exception();
+	}
+	catch(std::exception& e) {
+		std::cerr << e.what() << "(" << getName() << ")" << ": Failed on openning file" << std::endl;
+		exit(1);
+	}
+
     std::string buff;
     std::getline(ifs, buff);
     

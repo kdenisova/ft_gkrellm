@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:06:59 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:07:01 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:49:32 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
     virtual std::string getName() const = 0;
     virtual int         getPos() const = 0;
     virtual void        refresh() = 0;
-
+    
     //visitor pattern
     virtual void        render(class IMonitorDisplay *) = 0;
 

@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:08:01 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:08:02 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:59:36 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void NetworkModule::refresh() {
 
     std::ifstream ifs("./logs/netlog");
     std::string buff;
+	try {
+		if (!ifs.is_open())
+			throw std::exception();
+	}
+	catch(std::exception& e) {
+		std::cerr << e.what() << "(" << getName() << ")" << ": Failed on openning file" << std::endl;
+		exit(1);
+	}
+	
     std::getline(ifs, buff);
     this->_info = buff;
 	ifs.close();
