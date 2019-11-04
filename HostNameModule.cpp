@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HostNameModule.cpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:03:12 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:03:17 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fstream>
 #include <unistd.h>
 #include <string>
@@ -18,6 +30,7 @@ HostNameModule::HostNameModule(int pos) : _pos(pos) {
     std::string user;
     std::getline(ifs, user);
     this->_user = "Username: " + user;
+    ifs.close();
 }
 
 HostNameModule::~HostNameModule() {

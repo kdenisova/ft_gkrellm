@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HostNameModule.hpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:06:28 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:06:29 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef HOSTNAMEMODULE_H
 # define HOSTNAMEMODULE_H
@@ -29,7 +40,6 @@ public:
 	std::string getUserName() const;
     int			getSize(std::string const name) const;
 
-	
 };
 
 #endif

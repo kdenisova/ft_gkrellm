@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DisksModule.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:04:44 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:04:46 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <fstream>
 #include <unistd.h>
@@ -35,6 +46,7 @@ void DisksModule::refresh() {
 	std::string buff;
 	std::getline(ifs, buff);
 	this->_info = buff;
+	ifs.close();
 }
 
 std::string DisksModule::getName() const {

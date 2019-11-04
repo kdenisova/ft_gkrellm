@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NetworkModule.hpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:08:22 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:08:25 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-#ifndef NetworkModule_H
-# define NetworkModule_H
+#ifndef NETWORKMODULE_H
+# define NETWORKMODULE_H
 
 # include <iostream>
 # include "IMonitorModule.hpp"

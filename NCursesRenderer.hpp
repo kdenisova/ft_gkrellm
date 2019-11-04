@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NCursesRenderer.hpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:07:54 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:07:54 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef NCursesRenderer_H
-# define NCursesRenderer_H
+#ifndef NCURSESRENDERER_H
+# define NCURSESRENDERER_H
 
 #include <ncurses.h>
 #include <unistd.h>

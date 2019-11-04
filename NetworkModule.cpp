@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NetworkModule.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:08:01 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:08:02 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <fstream>
 #include <unistd.h>
@@ -29,12 +40,13 @@ void NetworkModule::render(IMonitorDisplay *d) {
 }
 
 void NetworkModule::refresh() {
-	system("top -l 1 | grep \"Network\" | awk '{print $2\" \"$3\" \"$4\" \"$5\" \"$6}' > netlog");
+	system("top -l 1 | grep \"Network\" | awk '{print $2\" \"$3\" \"$4\" \"$5\" \"$6}' > ./logs/netlog");
 
-    std::ifstream ifs("netlog");
+    std::ifstream ifs("./logs/netlog");
     std::string buff;
     std::getline(ifs, buff);
     this->_info = buff;
+	ifs.close();
 }
 
 std::string NetworkModule::getName() const {

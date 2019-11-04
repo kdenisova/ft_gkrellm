@@ -1,18 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   GUIRender.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:05:10 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:05:11 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <string>
 #include "GUIRender.hpp"
 #include "HostNameModule.hpp"
 #include "OSInfoModule.hpp"
-# include <SFML/Graphics.hpp>
-# include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 GUIRender::GUIRender() {
     this->_x = 700;
     this->_y = 1600;
     this->_window.create(sf::VideoMode(this->_x, this->_y), "ft_gkrelmm");
-
-    sf::RectangleShape module(sf::Vector2f(600, 200));
-    module.setFillColor(sf::Color::White);
 
     if (!this->_font.loadFromFile("Roboto-Regular.ttf"))
     {

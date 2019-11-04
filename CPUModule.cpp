@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   CPUModule.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/03 16:03:32 by kdenisov          #+#    #+#             */
+/*   Updated: 2019/11/03 16:03:35 by kdenisov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -39,9 +50,9 @@ void CPUModule::render(IMonitorDisplay *d) {
 
 void CPUModule::refresh() {
    
-    system("top -l 1 | grep \"^CPU usage:\" | awk '{print $3}' > cpulog");
+    system("top -l 1 | grep \"^CPU usage:\" | awk '{print $3}' > ./logs/cpulog");
 
-    std::ifstream ifs("cpulog");
+    std::ifstream ifs("./logs/cpulog");
     std::string buff;
     std::getline(ifs, buff);
     
