@@ -10,6 +10,7 @@ GUIRender::GUIRender() {
     this->_x = 700;
     this->_y = 1600;
     this->_window.create(sf::VideoMode(this->_x, this->_y), "ft_gkrelmm");
+    this->_window.setFramerateLimit(60);
 
     sf::RectangleShape module(sf::Vector2f(600, 200));
     module.setFillColor(sf::Color::White);
@@ -184,7 +185,24 @@ void GUIRender::render(CPUModule *m) {
     this->_window.draw(text4);
     this->_window.draw(text5);
 
-	
+    // CPU chart
+    // get 10 for testing
+
+    int border_offset = 2;      // main form border size
+    int bar_thickness = 10;     // chart bar thickness
+    int interpolation = 2;     // Y-axis interpolation multiplier
+    int base_line     = 1000;   // Y chart base line
+
+    std::list<float> chart_data = m->getLastUsage((this->_x - border_offset)/bar_thickness);
+
+    int offset = -bar_thickness;
+    for (std::list<float>::iterator it = chart_data.begin(); it != chart_data.end(); it++) {
+        int __height_px = (*it) * interpolation;
+        sf::RectangleShape rec_bar(sf::Vector2f(bar_thickness, __height_px));
+        rec_bar.setFillColor(sf::Color(100, 250, 50)); // lime green
+        rec_bar.move(offset+=bar_thickness, base_line - __height_px); // move this way <-<-<-<
+        this->_window.draw(rec_bar);
+    }
 	// std::list<float> chart = m->getLastUsage(this->_y - 2);
 	// int pos;
 	// int i = 1;
