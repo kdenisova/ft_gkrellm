@@ -6,14 +6,14 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:03:12 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 17:02:10 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:12:57 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fstream>
 #include <unistd.h>
 #include <string>
-#include "HostNameModule.hpp"
+#include "includes/HostNameModule.hpp"
 
 HostNameModule::HostNameModule() {
 }

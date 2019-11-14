@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdenisov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 11:47:41 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/01 11:47:58 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:12:57 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
-#include "NCursesRenderer.hpp"
-#include "GUIRender.hpp"
+#include "includes/NCursesRenderer.hpp"
+#include "includes/GUIRender.hpp"
 
 std::vector<IMonitorModule*> getSelectedModules(int *size, int *gsize) {
 	std::ifstream ifs("config");

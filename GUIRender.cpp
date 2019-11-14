@@ -6,14 +6,12 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:05:10 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 16:47:15 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:15:16 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
-#include "GUIRender.hpp"
-#include "HostNameModule.hpp"
-#include "OSInfoModule.hpp"
+#include "includes/GUIRender.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 

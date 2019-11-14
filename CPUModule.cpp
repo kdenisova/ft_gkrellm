@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:03:32 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 17:05:46 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:12:25 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fstream>
 #include <string>
 #include <sys/sysctl.h>
-#include "CPUModule.hpp"
+#include "includes/CPUModule.hpp"
 
 CPUModule::CPUModule() {
 }

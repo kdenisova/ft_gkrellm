@@ -6,7 +6,7 @@
 /*   By: kdenisov <kdenisov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:08:48 by kdenisov          #+#    #+#             */
-/*   Updated: 2019/11/03 17:00:02 by kdenisov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:13:13 by kdenisov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <string>
 #include <sys/sysctl.h>
-#include "RAMModule.hpp"
+#include "includes/RAMModule.hpp"
 
 RAMModule::RAMModule() {
 }
