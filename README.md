@@ -20,12 +20,12 @@ The system monitor can display information about the following modules in real t
 
 2. Build
 
-  `make`
+     `make`
 
 3. Configure
 
-  `Set + for necessary modules at`*`config`*`file`
+     `Set + for necessary modules at`*`config`*`file`
 
 4. Launch
 
-  `LD_LIBRARY_PATH=~/.brew/Cellar/sfml/2.5.1/lib ./ft_gkrellm [-tg]`
+     `LD_LIBRARY_PATH=~/.brew/Cellar/sfml/2.5.1/lib ./ft_gkrellm [-tg]`
