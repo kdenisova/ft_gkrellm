@@ -12,7 +12,7 @@ The system monitor can display information about the following modules in real t
 * Network module
 * Disks module
 
-**_Ft_GKrellM_** works in two different modes:
+Ft_GKrellM works in two different modes:
 
      -t: text (or terminal) mode. Implemented using NCURSES library
 
