@@ -14,8 +14,9 @@ The system monitor can display information about the following modules in real t
 
 **_Ft_GKrellM_** works in two different modes:
 
-*-t:* text (or terminal) mode. Implemented using NCURSES library
-*-g:* graphical mode. The SFML library was chosen for the graphical interface
+     *-t:* text (or terminal) mode. Implemented using NCURSES library
+
+     *-g:* graphical mode. The SFML library was chosen for the graphical interface
 
 
 ## How to use?
