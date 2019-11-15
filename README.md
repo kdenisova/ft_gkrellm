@@ -1,6 +1,6 @@
 # Ft_GKrellM: System Monitor
 
-This project was the last Rush of CPP Piscine in 42 Silicon Valley. Over the weekend, we had to implement a simple analogue of the GKrellM tool.
+This project was the last Rush of the CPP Piscine at [42 Silicon Valley](https://www.42.us.org). Over the weekend, we had to implement a simple analogue of the GKrellM tool.
 
 The system monitor can display information about the following modules in real time:
 
