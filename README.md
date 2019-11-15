@@ -16,7 +16,7 @@ The system monitor can display information about the following modules in real t
 
 1. Install SFML
 
-  `brew install sfml`
+     `brew install sfml`
 
 2. Build
 
