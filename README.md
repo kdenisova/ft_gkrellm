@@ -11,3 +11,8 @@ The system monitor can display information about the following modules in real t
 * RAM module
 * Network module
 * Disks module
+
+## How to use?
+
+1. *Install SFML:*
+`brew install sfml`
