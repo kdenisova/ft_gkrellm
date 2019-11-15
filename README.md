@@ -31,5 +31,3 @@ The system monitor can display information about the following modules in real t
      `LD_LIBRARY_PATH=~/.brew/Cellar/sfml/2.5.1/lib ./ft_gkrellm [-tg]`
 
 ![alt text](https://github.com/kdenisova/Screenshots/blob/master/Modes.png)
-
-![alt text](https://github.com/kdenisova/Screenshots/blob/master/gui_mode.jpeg "Logo Title Text 1") ![alt text](https://github.com/kdenisova/Screenshots/blob/master/text_mode.jpeg)
